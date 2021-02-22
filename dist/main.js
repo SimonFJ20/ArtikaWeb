@@ -1,2 +1,0 @@
-(()=>{"use strict";alert("working")})();
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hcnRpa2Etd2ViLy4vc3JjL2luZGV4LnRzIl0sIm5hbWVzIjpbImFsZXJ0Il0sIm1hcHBpbmdzIjoibUJBQ0FBLE1BQU0sWSIsImZpbGUiOiJtYWluLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbmFsZXJ0KCd3b3JraW5nJylcclxuIl0sInNvdXJjZVJvb3QiOiIifQ==
