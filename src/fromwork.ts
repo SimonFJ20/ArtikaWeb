@@ -19,7 +19,10 @@
 */
 
 
-
+/*
+ *  TODO
+ *   -  Get and Post request with fetch API
+ */
 
 
 /**
@@ -28,11 +31,8 @@
 export class DOM {
 
 
-
-
     /** Get the website title */
     public static getTitle = (): string => document.title;
-
 
 
 
@@ -47,8 +47,6 @@ export class DOM {
 
     };
 
-    
-
 
 
     /**
@@ -61,18 +59,14 @@ export class DOM {
         // assign pointer to new <link> element
         const newLinkElement = document.createElement("link");
 
-        // css is stylesheet
-        newLinkElement.rel = "stylesheet";
-
+        // equivalent to <link rel="stylesheet" href="{url}" />
+        newLinkElement.rel = 'stylesheet';
+        newLinkElement.href = url;
 
         // can be used if all css should be in a specific folder
         //newLinkElement.href = "./style/" + url;
 
-        
-        // set file reference
-        newLinkElement.href = url;
-
-        // add to DOM
+        // add element to DOM at head
         document.head.appendChild(newLinkElement);
 
     };
@@ -135,20 +129,37 @@ export const html = (html: string): Component => html.replace(/\r?\n|\r|\s{4}/g,
 
 
 
+/* Runtime Code Execution */
+
 // only accepts void functions to avoid potential errors
 const runtimeCallbacks: Array<() => void> = [];
 
+
+
+/**
+ * Runs callback functions after html has been rendered.
+ * Can be used, but isn't limited, to interacting with html.
+ * @param {() => void} callbacks - Function to be run
+ */
 
 export const setRuntime = (...callbacks: Array<() => void>): void => {
     callbacks.forEach((callback) => {
         runtimeCallbacks.push(callback);
     });
 };
+
+/**
+ * Runs the callback functions, that have been set with `setRuntime()`.
+ * Usually run after html is rendered.
+ */
+
 export const execRuntime = (): void => {
     runtimeCallbacks.forEach((callback) => {
         callback();
     });
 };
+
+
 
 
 
@@ -159,6 +170,7 @@ export const execRuntime = (): void => {
  * Generates a random string.
  * @param {string} length - Length of the string
  */
+
 export const makeid = (length: number): string => {
 
     let id = '';
