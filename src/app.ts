@@ -31,7 +31,7 @@ export const App = (): Component => {
     switch(window.location.pathname) {
 
         case '/':
-            return html(/*html*/`${Samplepage({titleText: 'fromwork is teamwork'})}`);
+            return html(/*html*/`${Samplepage({titleText: `fromwork is terriblen't`})}`);
 
         default:
             return html(/*html*/`<h1>${window.location.pathname} not found! 404</h1>`);

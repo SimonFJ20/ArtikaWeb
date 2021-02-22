@@ -21,39 +21,124 @@
 
 
 
-/* General HTML utilities */
 
-// For general
+/**
+ * General utility for managing the HTML DOM (Document Object Model)
+ */
 export class DOM {
+
+
+
+
+    /** Get the website title */
+    public static getTitle = (): string => document.title;
+
+
+
+
+    /**
+     * Change the website title
+     * @param {string} title - New title string
+     */
+
     public static setTitle = (title: string): void => {
+
         document.title = title;
+
     };
 
-    /**Specify CSS import, file MUST be in `dist/` folder */
+    
+
+
+
+    /**
+     * Specify CSS import
+     * @param {string} url - CSS file location in `dist/`
+     */
+
     public static setCssImport = (url: string): void => {
+
+        // assign pointer to new <link> element
         const newLinkElement = document.createElement("link");
+
+        // css is stylesheet
         newLinkElement.rel = "stylesheet";
+
+
+        // can be used if all css should be in a specific folder
         //newLinkElement.href = "./style/" + url;
+
+        
+        // set file reference
         newLinkElement.href = url;
+
+        // add to DOM
         document.head.appendChild(newLinkElement);
+
     };
+
+
+
+
+    
+    /**
+     * Get pointer to existing DOM element by id
+     * @param {string} id - DOM id of element
+     * @returns {Element} Specific type pointer to element
+     */
 
     public static id = (id: string) => {
+
+        // get the single first element with id
         return <HTMLElement>document.getElementById(id);
+
     };
 
+
+
+    /**
+     * Get pointer to the first existing DOM element by DOM query
+     * @param {string} id - DOM query of element
+     * @returns {Element} Specific type pointer to element
+     */
+
     public static q = (elementQuery: string) => {
+
+        // get the single first element with query
         return <Element>document.querySelector(elementQuery);
+
     };
+
+
+
 }
+
+
+
+/**
+ * App Component contaning `html(string)` 
+ */
 
 export type Component = string;
 
 
-// removes whitespace etc
-export const html = (html: string): Component => html.replace(/\r?\n|\r|\s{4}/g, "");
 
+/**
+ * Convert html string into Component and removes whitespace and linebreaks
+ * @param {string} html - String with html
+ * @warning Does **NOT** remove JS comments `//` `/* * /` 
+ */
+// TODO: make to remove comments, single line from '//' to '\n', multiline from '/*' to '*/'
+// removes line breaks, tabs, space*4
+export const html = (html: string): Component => html.replace(/\r?\n|\r|\s{4}/g, '');
+
+
+
+
+// only accepts void functions to avoid potential errors
 const runtimeCallbacks: Array<() => void> = [];
+
+
 export const setRuntime = (...callbacks: Array<() => void>): void => {
     callbacks.forEach((callback) => {
         runtimeCallbacks.push(callback);
@@ -65,12 +150,40 @@ export const execRuntime = (): void => {
     });
 };
 
-/* Ajax + JQuery */
-/*
- *   Allthough i think it would be better to do without jquery, im lazy
- */
 
-/*
+
+/* Miscellaneous utilities */
+
+
+/**
+ * Generates a random string.
+ * @param {string} length - Length of the string
+ */
+export const makeid = (length: number): string => {
+
+    let id = '';
+
+    // only strictly legal characters used
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < length; i++) {
+
+        // picks random char
+        id += characters.charAt(Math.floor(Math.random() * characters.length));
+
+    }
+
+    return id;
+
+};
+
+
+
+
+
+/* Unused code */
+
+/* Ajax + JQuery
 export const get = (url: string, callback: (response: object) => void) => {
     const settings = {
         "url": url,
@@ -94,15 +207,3 @@ export const post = (url: string, data: object, callback: (response: object) => 
 };
 
 */
-
-/* Miscellaneous utilities */
-
-export const makeid = (length: number): string => {
-    let id = "";
-    const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (let i = 0; i < length; i++) {
-        id += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return id;
-};

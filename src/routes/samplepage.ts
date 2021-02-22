@@ -37,9 +37,11 @@ export const Samplepage = (props: Props): Component => {
 
     });
 
+    // 
     return html(/*html*/`
 
-        <h1 id="title">Samplepage with text:&nbsp</h1>
+        <button></button>
+        <h1 id="title">Example page with text:&nbsp</h1>
 
     `)
 
