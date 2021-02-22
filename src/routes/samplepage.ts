@@ -18,7 +18,7 @@
 *       Last Edit:  22-02-2021
 */
 
-import { Component, DOM, html, setRuntime } from "../fromwork";
+import { Component, DOM, get, html, setRuntime } from "../fromwork";
 
 
 class Props {
@@ -34,13 +34,18 @@ export const Samplepage = (props: Props): Component => {
     setRuntime(() => {
 
         DOM.id('title').innerText += props.titleText;
+        DOM.id('alertButton').addEventListener('click', () => alert('Hello there'));
+
+        get('http://localhost:4000/', (res) => {
+            console.log(res);
+        })
 
     });
 
     // 
     return html(/*html*/`
 
-        <button></button>
+        <button id="alertButton">Press Me</button>
         <h1 id="title">Example page with text:&nbsp</h1>
 
     `)
