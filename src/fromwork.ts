@@ -177,12 +177,18 @@ export const get = (url: string, callback: (response: object, error?: boolean) =
 
 
 
+    // maximum error handling to maintain stability
+    try {
 
-    // execute request, follows redirects, expects json
-    fetch(url, {method: 'GET', headers: headers, body: body, redirect: 'follow'})
-        .then(body => body.json())
-        .then(response => callback(response))
-        .catch(error => callback(error, true));
+        // execute request, follows redirects, expects json
+        fetch(url, {method: 'GET', headers: headers, body: body, redirect: 'follow'})
+            .then(body => body.json())
+            .then(response => callback(response))
+            .catch(error => callback(error, true));
+
+    } catch(error) {
+        callback(error, true);
+    }
 
 }
 
@@ -206,11 +212,18 @@ export const post = (url: string, data: object, callback: (response: object, err
 
 
 
-    // execute request, follows redirects, expects json
-    fetch(url, {method: 'POST', headers: headers, body: body, redirect: 'follow'})
-        .then(body => body.json())
-        .then(response => callback(response))
-        .catch(error => callback(error, true));
+    // maximum error handling to maintain stability
+    try {
+
+        // execute request, follows redirects, expects json
+        fetch(url, {method: 'POST', headers: headers, body: body, redirect: 'follow'})
+            .then(body => body.json())
+            .then(response => callback(response))
+            .catch(error => callback(error, true));
+
+    } catch(error) {
+        callback(error, true);
+    }
 
 }
 

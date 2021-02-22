@@ -27,7 +27,10 @@ export const App = (): Component => {
 
     DOM.setCssImport('global.css');
 
-    // router
+    // if router is omitted
+    //return html(/*html*/`${Samplepage({titleText: `fromwork is terriblen't`})}`);
+
+    // router, can be omitted
     switch(window.location.pathname) {
 
         case '/':
