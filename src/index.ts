@@ -19,7 +19,7 @@
 */
 
 import { App } from "./app";
-import { execRuntime } from "./fromwork";
+import { execRuntime } from "../fromworkjs/fromwork";
 
 const htmlTagName = 'artika-app';
 const htmlAppTag = document.getElementsByTagName(htmlTagName)[0];
