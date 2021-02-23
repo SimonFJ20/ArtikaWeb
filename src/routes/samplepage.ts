@@ -18,7 +18,7 @@
 *       Last Edit:  22-02-2021
 */
 
-import { Component, DOM, get, html, setRuntime } from "../fromworkjs/fromwork";
+import { Component, DOM, get, html, setRuntime } from "../../fromworkjs/fromwork";
 
 
 class Props {
